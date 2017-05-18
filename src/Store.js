@@ -5,6 +5,7 @@ export const Store = {
 	datas: {
 		counter: 0,
 		word: '',
+		range: 0,
 		tasks: [
 			{
 				name: 'CR project',
@@ -74,16 +75,38 @@ export const Store = {
 		let tab = [];
 		let reg = new RegExp(this.datas.word, "i");
 
-		if (this.datas.word.length >= 3) {
-			tab = this.datas.tasks.filter((elt) =>
+		if (this.datas.word.length > 0) {
+			return tab = this.datas.tasks.filter((elt) =>
 				reg.test(elt.name)
 			);
+
 		} else {
 			tab = this.datas.tasks;
 		}
-		console.log(tab)
+
+		if (this.datas.range > 0) {
+			tab = this.datas.tasks.filter((elt) => elt.hours >= this.datas.range)
+
+		} else {
+			tab = this.datas.tasks
+		}
 
 		return tab;
-	}
+	},
+	// filterRange() {
+	// 	// console.log(this.datas.range)
+
+	// 	let tab = []
+
+	// 	if (this.datas.range > 0) {
+	// 		tab = this.datas.tasks.filter((elt) => elt.hours >= this.datas.range)
+
+	// 	} else {
+	// 		tab = this.datas.tasks
+	// 	}
+
+	// 	console.log(arr.length)
+	// 	return tab
+	// }
 
 };

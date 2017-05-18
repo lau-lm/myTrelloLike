@@ -2,6 +2,7 @@
 	<div class="formulaire col s12 m3 grey darken-2 ">
 
 		<search-bar></search-bar>
+		<range-input></range-input>
 
 		<div v-if="counterMessage === true">Hé oh doucement! </div>
 
@@ -37,11 +38,12 @@
 	import { Store } from '@/Store.js'
 	import { Bus } from '@/Bus.js'
 	import Search from './Search.vue'
+	import RangeInput from './RangeInput.vue'
 
 
 	export default {
 		name: 'addForm',
-		components: { searchBar: Search },
+		components: { searchBar: Search, rangeInput: RangeInput },
 		created() {
 			Bus.$on('counter3', () => this.counterMessage = true)
 		},
