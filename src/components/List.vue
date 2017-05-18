@@ -18,7 +18,12 @@
 		components: { task: Task },
 		data() {
 			return {
-				tasks: Store.datas.tasks,
+				datas: Store.datas,
+			}
+		},
+		computed: {
+			tasks() {
+				return Store.search()
 			}
 		}
 	}

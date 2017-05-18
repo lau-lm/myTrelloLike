@@ -4,7 +4,7 @@ import Search from '@/components/Search.vue'
 export const Store = {
 	datas: {
 		counter: 0,
-		searchRequest: '',
+		word: '',
 		tasks: [
 			{
 				name: 'CR project',
@@ -71,23 +71,19 @@ export const Store = {
 	},
 
 	search: function () {
-		console.log(this.datas.tasks.length)
+		let tab = [];
+		let reg = new RegExp(this.datas.word, "i");
 
-		console.log('fonction search running')
-		console.log(this.datas.searchRequest)
-
-
-		let regex = new RegExp(this.datas.searchRequest, "i")
-
-		if (this.datas.searchRequest.length > 1) {
-			console.log('searchRequest > 1', regex)
-			this.datas.tasks = this.datas.tasks.filter(function (elt) {
-				return regex.test(elt.name)
-			});
+		if (this.datas.word.length >= 3) {
+			tab = this.datas.tasks.filter((elt) =>
+				reg.test(elt.name)
+			);
 		} else {
-			return this.tasks
+			tab = this.datas.tasks;
 		}
-		console.log(this.datas.tasks.length)
+		console.log(tab)
+
+		return tab;
 	}
 
 };

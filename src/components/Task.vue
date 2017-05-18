@@ -1,6 +1,6 @@
 <template>
 	<li class="collection-item">
-		<span class="col s4"> Task : <span class=" taskname ">{{task.name}}</span></span>
+		<span class="col s4"> Task : <span class="taskname ">{{task.name}}</span></span>
 
 		<span class="taskhours col s3"><i class="material-icons">query_builder</i>{{task.hours}} hour<span v-if="task.hours> 1">s</span>
 		</span>
@@ -23,14 +23,19 @@
 		props: ['task'],
 		data() {
 			return {
-				tasks: Store.datas.tasks,
+				datas: Store.datas,
+			}
+		},
+		computed: {
+			tasks() {
+				return Store.search()
 			}
 		},
 		methods: {
 			deleteTask: function (task) {
 
 				Store.datas.counter += 1;
-				let pos = this.tasks.indexOf(this.task);
+				let pos = this.datas.tasks.indexOf(this.task);
 				this.tasks.splice(pos, 1);
 				console.log(Store.datas.counter)
 				if (Store.datas.counter > 3) {
